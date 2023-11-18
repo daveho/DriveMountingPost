@@ -9,7 +9,9 @@
 
 $fn = 60;
 
+// ----------------------------------------------------------------------
 // design parameters (all units are mm)
+// ----------------------------------------------------------------------
 
 // main post dimensions
 post_h = 64;
@@ -19,7 +21,7 @@ post_d = 3;
 // how deep the foot extends back from the "front" of the post
 foot_d = post_w;
 
-brace_side_len = foot_d - 0;
+brace_side_len = foot_d;
 
 // how far below center of drive screw hole the top surface
 // of the support ledge should be
@@ -45,9 +47,15 @@ m3_hole_diameter = 3.2;
 n6_hole_diameter = 3.6;
 
 // "countersink" diameter and depth (so that screw holes are recessed slightly)
-countersink_diameter = 6;
+m3_countersink_diameter = 7.2;
+n6_countersink_diameter = 9;
 countersink_d = 1;
 
+// ----------------------------------------------------------------------
+// component modules
+// ----------------------------------------------------------------------
+
+// triangular brace to help keep the post rigid with respect to the foot
 module foot_brace() {
     translate([post_d, brace_side_len, 0]) {
         rotate([90, 0, 270]) {
@@ -118,13 +126,37 @@ module drive_screw_hole() {
     }
 }
 
-module countersink() {
+// cylinder for the foot screw hole
+module foot_screw_hole() {
+    translate([0, 0, -10]) {
+        cylinder(h=20, d=n6_hole_diameter);
+    }
+}
+
+// countersink cylinder for punching into a vertical surface
+// (i.e., the drive post)
+module countersink(diameter) {
     translate([0, countersink_d, 0]) {
         rotate([90, 0, 0]) {
-            cylinder(h=5, d=countersink_diameter);
+            cylinder(h=5, d=diameter);
         }
     }
 }
+
+// countersink cylinder for punching into a horizontal surface
+// (i.e., the foot)
+module countersink_horiz(diameter) {
+    translate([0, 0, post_d]) {
+        rotate([-90, 0, 0]) {
+            countersink(diameter);
+        }
+    }
+}
+
+// ----------------------------------------------------------------------
+// complete drive post module
+// ----------------------------------------------------------------------
+
 
 // post with screw holes and countersinks
 module post() {
@@ -134,21 +166,32 @@ module post() {
         // screw hole for bottom drive
         translate([post_w/2, 0, bottom_drive_h + ledge_offset_h]) {
             drive_screw_hole();
-            countersink();
+            countersink(m3_countersink_diameter);
         }
 
         // screw hole for top drive
         translate([post_w/2, 0, top_drive_h + ledge_offset_h]) {
             drive_screw_hole();
-            countersink();
+            countersink(m3_countersink_diameter);
+        }
+
+        // screw hole for foot
+        translate([foot_d/2, -foot_d/2, 0]) {
+            foot_screw_hole();
+            countersink_horiz(n6_countersink_diameter);
         }
     }
 }
 
+// can uncomment these for testing...
 //post_body();
 //foot_brace();
 //ledge();
 //ledge_bevel();
 //drive_screw_hole();
 //countersink();
+//countersink_horiz();
+//foot_screw_hole();
+
+// generate the post
 post();

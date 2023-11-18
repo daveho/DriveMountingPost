@@ -46,7 +46,7 @@ n6_hole_diameter = 3.6;
 
 // "countersink" diameter and depth (so that screw holes are recessed slightly)
 countersink_diameter = 6;
-//countersink_
+countersink_d = 1;
 
 module foot_brace() {
     translate([post_d, brace_side_len, 0]) {
@@ -119,6 +119,11 @@ module drive_screw_hole() {
 }
 
 module countersink() {
+    translate([0, countersink_d, 0]) {
+        rotate([90, 0, 0]) {
+            cylinder(h=5, d=countersink_diameter);
+        }
+    }
 }
 
 // post with screw holes and countersinks
@@ -129,11 +134,13 @@ module post() {
         // screw hole for bottom drive
         translate([post_w/2, 0, bottom_drive_h + ledge_offset_h]) {
             drive_screw_hole();
+            countersink();
         }
 
         // screw hole for top drive
         translate([post_w/2, 0, top_drive_h + ledge_offset_h]) {
             drive_screw_hole();
+            countersink();
         }
     }
 }

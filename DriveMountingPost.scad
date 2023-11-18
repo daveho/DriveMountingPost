@@ -14,7 +14,7 @@ $fn = 60;
 // ----------------------------------------------------------------------
 
 // main post dimensions
-post_h = 64;
+post_h = 60;
 post_w = 16;
 post_d = 3;
 
@@ -25,10 +25,10 @@ brace_side_len = foot_d;
 
 // how far below center of drive screw hole the top surface
 // of the support ledge should be
-ledge_offset_h = 6;
+ledge_offset_h = 4.8;
 
 // ledge depth
-ledge_d = 3;
+ledge_d = 6;
 
 // thickness of ledge above the bevel (so there isn't a sharp edge)
 ledge_h = 1;
@@ -44,11 +44,11 @@ top_drive_h = bottom_drive_h + drive_separation_h;
 m3_hole_diameter = 3.2;
 
 // 6-32 screw hole diameter (these are a bit larger than M3)
-n6_hole_diameter = 3.6;
+n6_hole_diameter = 4;
 
 // "countersink" diameter and depth (so that screw holes are recessed slightly)
 m3_countersink_diameter = 7.2;
-n6_countersink_diameter = 9;
+n6_countersink_diameter = 8;
 countersink_d = 1;
 
 // ----------------------------------------------------------------------

@@ -14,7 +14,7 @@ $fn = 60;
 // ----------------------------------------------------------------------
 
 // main post dimensions
-post_h = 62;
+post_h = 68;
 post_w = 16;
 post_d = 3;
 
@@ -35,7 +35,7 @@ ledge_h = 1;
 
 // drive placement
 drive_clearance_h = 20; // how far above the surface the bottom drive is placed
-drive_separation_h = 30; // separation, bottom of bottom drive to bottom of top drive
+drive_separation_h = 36; // separation, bottom of bottom drive to bottom of top drive
 
 bottom_drive_h = drive_clearance_h;
 top_drive_h = bottom_drive_h + drive_separation_h;

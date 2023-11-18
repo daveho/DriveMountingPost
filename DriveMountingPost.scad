@@ -14,7 +14,7 @@ $fn = 60;
 // ----------------------------------------------------------------------
 
 // main post dimensions
-post_h = 60;
+post_h = 62;
 post_w = 16;
 post_d = 3;
 
@@ -28,7 +28,7 @@ brace_side_len = foot_d;
 ledge_offset_h = 4.8;
 
 // ledge depth
-ledge_d = 6;
+ledge_d = 5;
 
 // thickness of ledge above the bevel (so there isn't a sharp edge)
 ledge_h = 1;

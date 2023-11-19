@@ -25,7 +25,7 @@ brace_side_len = foot_d;
 
 // how far below center of drive screw hole the top surface
 // of the support ledge should be
-ledge_offset_h = 4.8;
+ledge_offset_h = 5;
 
 // ledge depth
 ledge_d = 5;
@@ -98,10 +98,14 @@ module post_body() {
     cube([post_w, post_d, post_h]);
     
     // ribs for additional rigidity
-    rib();
-    translate([post_w - post_d, 0, 0]) {
-        rib();
-    }
+    // Update: I've concluded that making the posts more rigid is actually
+    // a bad idea. Allowing the post to flex is a feature, since 3.5"
+    // devices aren't really constructed to precise tolerances, and
+    // the posts need to flex somewhat to accommodate.
+//    rib();
+//    translate([post_w - post_d, 0, 0]) {
+//        rib();
+//    }
 
     // foot
     translate([0, -foot_d, 0]) {

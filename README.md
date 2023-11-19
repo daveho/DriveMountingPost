@@ -18,7 +18,7 @@ using PLA with 40\% infill without rotating it.
 ## Images
 
 Photo showing the mounting posts used with a 3.5" floppy drive and a StarTech
-CompactFlash reader:
+CompactFlash to IDE adapter:
 
 ![photo of 3.5" floppy and CompactFlash reader](img/pic.jpg)
 

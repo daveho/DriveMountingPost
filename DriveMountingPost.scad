@@ -84,12 +84,25 @@ module ledge() {
     }
 }
 
+// add "ribs" for some additional rigidity
+module rib() {
+    translate([0, -post_d, 0]) {
+        cube([post_d, post_d, post_h]);
+    }
+}
+
 // body of post: defines the solid shapes, but doesn't
 // have the screw holes
 module post_body() {
     // main post
     cube([post_w, post_d, post_h]);
     
+    // ribs for additional rigidity
+    rib();
+    translate([post_w - post_d, 0, 0]) {
+        rib();
+    }
+
     // foot
     translate([0, -foot_d, 0]) {
         cube([post_w, foot_d, post_d]);
@@ -188,6 +201,7 @@ module post() {
 //foot_brace();
 //ledge();
 //ledge_bevel();
+//rib();
 //drive_screw_hole();
 //countersink();
 //countersink_horiz();
